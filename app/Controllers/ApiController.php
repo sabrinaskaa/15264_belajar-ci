@@ -22,7 +22,8 @@ class ApiController extends ResourceController
     protected $transaction;
     protected $transaction_detail;
 
-    function __construct() {
+    function __construct()
+    {
         $this->apiKey = env('API_KEY');
         $this->user = new UserModel();
         $this->transaction = new TransactionModel();
@@ -43,12 +44,12 @@ class ApiController extends ResourceController
         });
 
         if (array_key_exists('Key', $headers)) {
-            echo $headers['Key'];
             if ($headers['Key'] == $this->apiKey) {
                 $penjualan = $this->transaction->findAll();
 
                 foreach ($penjualan as &$pj) {
                     $pj['details'] = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+                    $pj['total_item'] = count($pj['details']);
                 }
 
                 $data['status'] = ['code' => 200, 'description' => 'OK'];

@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-            <img src="<?php echo base_url() ?>NiceAdmin/assets/img/logo.png" alt="">
+            <img src="<?php echo base_url(); ?>NiceAdmin/assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Toko</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -16,6 +16,15 @@
         </form>
     </div><!-- End Search Bar -->
 
+    <?php
+    if (session()->get('isLoggedIn') && session()->get('diskon')) :
+        $diskon = session()->get('diskon');
+    ?>
+    <div class="bg-success text-white p-1 rounded">
+        Hari ini ada diskon <?= number_format($diskon, 0, ',', '.') ?> per item
+    </div>
+    <?php endif; ?>
+
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
 
@@ -26,7 +35,6 @@
             </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown">
-
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-bell"></i>
                     <span class="badge bg-primary badge-number">4</span>
@@ -118,7 +126,8 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="<?php echo base_url() ?>NiceAdmin/assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                            <img src="<?php echo base_url(); ?>NiceAdmin/assets/img/messages-1.jpg" alt=""
+                                class="rounded-circle">
                             <div>
                                 <h4>Maria Hudson</h4>
                                 <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -132,7 +141,8 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="<?php echo base_url() ?>NiceAdmin/assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                            <img src="<?php echo base_url(); ?>NiceAdmin/assets/img/messages-2.jpg" alt=""
+                                class="rounded-circle">
                             <div>
                                 <h4>Anna Nelson</h4>
                                 <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -146,7 +156,8 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="<?php echo base_url() ?>NiceAdmin/assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                            <img src="<?php echo base_url(); ?>NiceAdmin/assets/img/messages-3.jpg" alt=""
+                                class="rounded-circle">
                             <div>
                                 <h4>David Muldon</h4>
                                 <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -169,8 +180,10 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="<?php echo base_url() ?>NiceAdmin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2"><?= session()->get('username'); ?> (<?= session()->get('role'); ?>)</span>
+                    <img src="<?php echo base_url(); ?>NiceAdmin/assets/img/profile-img.jpg" alt="Profile"
+                        class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2"><?= session()->get('username') ?>
+                        (<?= session()->get('role') ?>)</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
